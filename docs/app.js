@@ -161,10 +161,37 @@ document.addEventListener("DOMContentLoaded", () => {
   bookingState.caseId = generateCaseId();
   document.getElementById("case-ref").innerText = bookingState.caseId;
 
+  // Now Showing Poster Cards Bindings
+  const nowShowingCards = document.querySelectorAll(".now-showing-card");
+  nowShowingCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const selectedMovieName = card.getAttribute("data-movie");
+      
+      // Update form select box
+      movieSelect.value = selectedMovieName;
+      
+      // Highlight card selection
+      nowShowingCards.forEach(c => c.classList.remove("active-selection"));
+      card.classList.add("active-selection");
+      
+      // Trigger change rules
+      movieSelect.dispatchEvent(new Event("change"));
+    });
+  });
+
   // Dynamic Poster Updater Rule
   movieSelect.addEventListener("change", () => {
     const selectedVal = movieSelect.value;
     const movie = moviesDb[selectedVal];
+
+    // Highlight matching poster card in gallery
+    nowShowingCards.forEach(c => {
+      if (c.getAttribute("data-movie") === selectedVal) {
+        c.classList.add("active-selection");
+      } else {
+        c.classList.remove("active-selection");
+      }
+    });
 
     if (movie) {
       moviePosterCard.className = `movie-poster-card ${movie.className}`;
@@ -383,6 +410,9 @@ document.addEventListener("DOMContentLoaded", () => {
     posterGenre.innerText = "-";
     posterCast.innerText = "-";
     posterRelease.innerText = "-";
+
+    // Clear selection highlights on now showing gallery cards
+    nowShowingCards.forEach(c => c.classList.remove("active-selection"));
 
     // Clear seat selection array
     bookingState.selectedSeats = [];

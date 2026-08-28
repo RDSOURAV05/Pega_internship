@@ -8,12 +8,10 @@
 </head>
 <body>
 
-  <!-- Background decorative watermarks (CSS Movie Posters Grid) -->
-  <div class="bg-posters-grid">
-    <div class="bg-poster p-bethlehem">Bethlehem Kudumba Unit</div>
-    <div class="bg-poster p-khalifa">Khalifa - The Ruler</div>
-    <div class="bg-poster p-toxic">Toxic: Fairy Tale</div>
-    <div class="bg-poster p-kathanar">Kathanar - Sorcerer</div>
+  <!-- Abstract Cinema Lobby Background Glows -->
+  <div class="lobby-bg-glows">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
   </div>
 
   <!-- Pega Header -->
@@ -66,8 +64,56 @@
           <!-- STAGE 1: REQUEST FORM (US-001) -->
           <section class="stage-section active" id="stage-1">
             <h2>US-001: Submit Movie Ticket Request</h2>
-            <p class="desc">Specify your movie preferences, theater location, and ticket requirements to initiate the booking process.</p>
+            <p class="desc">Select a film from the Now Showing list or fill in the booking parameters below to proceed.</p>
             
+            <!-- NOW SHOWING POSTER GALLERY -->
+            <div class="gallery-section">
+              <h3 class="gallery-title">🎬 Now Showing in Kerala Cinemas</h3>
+              <div class="now-showing-gallery">
+                
+                <div class="now-showing-card card-bethlehem" data-movie="Bethlehem Kudumba Unit">
+                  <div class="card-badge">POPULAR</div>
+                  <div class="card-art">BKU</div>
+                  <div class="card-details">
+                    <h4>Bethlehem Kudumba Unit</h4>
+                    <p class="cast">Nivin Pauly, Mamitha Baiju</p>
+                    <span class="genre-tag">Rom-Com</span>
+                  </div>
+                </div>
+
+                <div class="now-showing-card card-khalifa" data-movie="Khalifa – The Ruler">
+                  <div class="card-badge">ACTION</div>
+                  <div class="card-art">KLR</div>
+                  <div class="card-details">
+                    <h4>Khalifa – The Ruler</h4>
+                    <p class="cast">Prithviraj Sukumaran</p>
+                    <span class="genre-tag">Crime Thriller</span>
+                  </div>
+                </div>
+
+                <div class="now-showing-card card-toxic" data-movie="Toxic: A Fairy Tale for Grown-ups">
+                  <div class="card-badge">BLOCKBUSTER</div>
+                  <div class="card-art">TXC</div>
+                  <div class="card-details">
+                    <h4>Toxic: A Fairy Tale</h4>
+                    <p class="cast">Yash, Nayanthara</p>
+                    <span class="genre-tag">Action Drama</span>
+                  </div>
+                </div>
+
+                <div class="now-showing-card card-kathanar" data-movie="Kathanar – The Wild Sorcerer">
+                  <div class="card-badge">NEW RELEASE</div>
+                  <div class="card-art">KTH</div>
+                  <div class="card-details">
+                    <h4>Kathanar: Wild Sorcerer</h4>
+                    <p class="cast">Jayasurya, Anushka Shetty</p>
+                    <span class="genre-tag">Fantasy Horror</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
             <div class="stage-1-layout">
               <!-- Booking Form -->
               <form id="request-form" class="request-form-el">
@@ -81,16 +127,16 @@
                     <input type="email" id="cust-email" placeholder="customer@domain.com" required>
                   </div>
                   <div class="form-group">
-                    <label for="movie-select">Select Movie (Kerala Releases)</label>
+                    <label for="movie-select">Select Movie</label>
                     <select id="movie-select" required>
                       <option value="" disabled selected>Select a movie...</option>
-                      <option value="Bethlehem Kudumba Unit">Bethlehem Kudumba Unit (Nivin Pauly)</option>
-                      <option value="Khalifa – The Ruler">Khalifa – The Ruler (Prithviraj)</option>
-                      <option value="Thudakkam">Thudakkam (Thriller)</option>
-                      <option value="Toxic: A Fairy Tale for Grown-ups">Toxic (Yash, Nayanthara)</option>
-                      <option value="Bhogi">Bhogi (Sharwanand)</option>
-                      <option value="Theri Meri">Theri Meri (Sreenath Bhasi)</option>
-                      <option value="Nere Chovva">Nere Chovva (Kunchacko Boban)</option>
+                      <option value="Bethlehem Kudumba Unit">Bethlehem Kudumba Unit</option>
+                      <option value="Khalifa – The Ruler">Khalifa – The Ruler</option>
+                      <option value="Thudakkam">Thudakkam</option>
+                      <option value="Toxic: A Fairy Tale for Grown-ups">Toxic: A Fairy Tale for Grown-ups</option>
+                      <option value="Bhogi">Bhogi</option>
+                      <option value="Theri Meri">Theri Meri</option>
+                      <option value="Nere Chovva">Nere Chovva</option>
                       <option value="Kathanar – The Wild Sorcerer">Kathanar – The Wild Sorcerer</option>
                     </select>
                   </div>
@@ -123,7 +169,7 @@
                 </div>
               </form>
 
-              <!-- Dynamic Movie Poster Panel -->
+              <!-- Selected Poster Card View -->
               <div class="poster-display-panel">
                 <div class="movie-poster-card empty" id="movie-poster-card">
                   <div class="poster-art" id="poster-art">
