@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pega - Movie Ticket Booking Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Pega Header -->
+  <header class="pega-header">
+    <div class="logo-area">
+      <div class="pega-logo">P</div>
+      <div class="pega-text">
+        <span class="app-title">Movie Ticket Booking</span>
+        <span class="app-sub">Pega App Studio Portal</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="role-badge">Case Worker</span>
+      <span class="user-name">Sai Kumar</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="pega-main">
+    <div class="case-container">
+      
+      <!-- Stage Tracker / Chevron Bar -->
+      <div class="chevron-bar">
+        <div class="chevron-step active" id="chev-1">
+          <span class="step-num">1</span>
+          <span class="step-text">Request</span>
+        </div>
+        <div class="chevron-step" id="chev-2">
+          <span class="step-num">2</span>
+          <span class="step-text">Availability</span>
+        </div>
+        <div class="chevron-step" id="chev-3">
+          <span class="step-num">3</span>
+          <span class="step-text">Calculation</span>
+        </div>
+        <div class="chevron-step" id="chev-4">
+          <span class="step-num">4</span>
+          <span class="step-text">Confirmation</span>
+        </div>
+      </div>
+
+      <!-- Case Content Area -->
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-id">CASE-ID: <span id="case-ref">PEGA-MB-2026-08</span></div>
+          <div class="case-status">Status: <span id="case-status-label" class="status-active">New</span></div>
+        </div>
+        <div class="case-body">
+
+          <!-- STAGE 1: REQUEST FORM (US-001) -->
+          <section class="stage-section active" id="stage-1">
+            <h2>US-001: Submit Movie Ticket Request</h2>
+            <p class="desc">Specify your movie preferences, theater location, and ticket requirements to initiate the booking process.</p>
+            
+            <form id="request-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="cust-name">Customer Name</label>
+                  <input type="text" id="cust-name" placeholder="Enter customer name" required>
+                </div>
+                <div class="form-group">
+                  <label for="cust-email">Customer Email</label>
+                  <input type="email" id="cust-email" placeholder="customer@domain.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="movie-select">Select Movie</label>
+                  <select id="movie-select" required>
+                    <option value="" disabled selected>Select a movie...</option>
+                    <option value="Engineer The Future">Engineer The Future of Agentic Enterprise</option>
+                    <option value="Low-Code Platform & Roles">Low-Code Platform & Roles</option>
+                    <option value="Introduction to Pega Infinity">Introduction to Pega Infinity</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="theater-select">Select Theater</label>
+                  <select id="theater-select" required>
+                    <option value="" disabled selected>Select a theater...</option>
+                    <option value="Pega Arena Cinema">Pega Arena Cinema (Valiamala)</option>
+                    <option value="Smartbridge Multiplex">Smartbridge Multiplex (Bangalore)</option>
+                    <option value="Constellation Digital Center">Constellation Digital Center (Virtual)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="ticket-type">Ticket Category</label>
+                  <select id="ticket-type" required>
+                    <option value="Standard">Standard - Row A-D ($150/ticket)</option>
+                    <option value="Premium">Premium - Row E-F ($300/ticket)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="ticket-qty">Quantity (Tickets)</label>
+                  <input type="number" id="ticket-qty" min="1" max="10" placeholder="1-10" required>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button type="submit" class="pega-btn-primary">Next: Choose Seats</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- STAGE 2: SEAT SELECTION (US-002) -->
+          <section class="stage-section" id="stage-2">
+            <h2>US-002: Check Show Availability & Select Seats</h2>
+            <p class="desc">Please select exactly <strong id="selected-qty-label">0</strong> seat(s) on the theater seat map.</p>
+            
+            <!-- Seating Grid Visualizer -->
+            <div class="seating-area">
+              <div class="screen-indicator">SCREEN THIS WAY</div>
+              
+              <div class="seating-grid" id="seating-grid">
+                <!-- Javascript will render grid here -->
+              </div>
+              
+              <div class="seat-legend">
+                <div class="legend-item"><span class="seat-box available"></span> Available</div>
+                <div class="legend-item"><span class="seat-box selected"></span> Selected</div>
+                <div class="legend-item"><span class="seat-box occupied"></span> Occupied (Pre-booked)</div>
+              </div>
+            </div>
+
+            <div class="btn-group">
+              <button class="pega-btn-secondary" id="back-to-1">Back</button>
+              <button class="pega-btn-primary" id="go-to-3" disabled>Next: Calculate Cost</button>
+            </div>
+          </section>
+
+          <!-- STAGE 3: PRICING & CALCULATION (US-003) -->
+          <section class="stage-section" id="stage-3">
+            <h2>US-003: Calculate Booking Cost</h2>
+            <p class="desc">Review the summary billing invoice generated by Pega Decision Engine rules.</p>
+            
+            <div class="invoice-card">
+              <h3>Receipt & Billing Statement</h3>
+              <table class="invoice-table">
+                <tr>
+                  <td>Customer Details</td>
+                  <td class="val"><span id="invoice-name">Sai Kumar</span> (<span id="invoice-email">sai@pega.com</span>)</td>
+                </tr>
+                <tr>
+                  <td>Movie & Theater</td>
+                  <td class="val"><span id="invoice-movie">Movie</span> @ <span id="invoice-theater">Theater</span></td>
+                </tr>
+                <tr>
+                  <td>Seats Reserved</td>
+                  <td class="val highlight-seats" id="invoice-seats">A1, A2</td>
+                </tr>
+                <tr class="divider">
+                  <td colspan="2"></td>
+                </tr>
+                <tr>
+                  <td>Base Ticket Price (<span id="invoice-qty">0</span> x $<span id="invoice-base-rate">150</span>)</td>
+                  <td class="val">$<span id="invoice-base-total">0.00</span></td>
+                </tr>
+                <tr>
+                  <td>Taxes & Fees (18% Service Tax/GST)</td>
+                  <td class="val">$<span id="invoice-tax">0.00</span></td>
+                </tr>
+                <tr class="discount-row" id="discount-row" style="display: none;">
+                  <td>Bulk Discount (10% off for 4+ tickets)</td>
+                  <td class="val discount-val">-$<span id="invoice-discount">0.00</span></td>
+                </tr>
+                <tr class="total-row">
+                  <td>Total Net Payable</td>
+                  <td class="val">$<span id="invoice-net-total">0.00</span></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="btn-group">
+              <button class="pega-btn-secondary" id="back-to-2">Back</button>
+              <button class="pega-btn-primary" id="confirm-booking">Submit Booking</button>
+            </div>
+          </section>
+
+          <!-- STAGE 4: CONFIRMATION -->
+          <section class="stage-section" id="stage-4">
+            <div class="success-screen">
+              <div class="success-icon">✓</div>
+              <h2>Booking Completed Successfully!</h2>
+              <p class="ref-message">Pega case has been resolved with status: <strong class="resolved-lbl">Resolved-Completed</strong></p>
+              
+              <div class="details-summary">
+                <p><strong>Transaction Reference:</strong> <span id="conf-trans-id">PEGA-MB-2026-XXXX</span></p>
+                <p><strong>Movie:</strong> <span id="conf-movie">Movie Title</span></p>
+                <p><strong>Theater:</strong> <span id="conf-theater">Theater Name</span></p>
+                <p><strong>Seats Booked:</strong> <span id="conf-seats">A1, A2</span></p>
+                <p><strong>Amount Paid:</strong> $<span id="conf-amount">0.00</span></p>
+              </div>
+              
+              <div class="timeline-area">
+                <h4>Case Lifecycle History Log</h4>
+                <ul class="timeline">
+                  <li><span class="time">Just Now</span> Case Status Transitioned to <strong>Resolved-Completed</strong></li>
+                  <li><span class="time">1 min ago</span> Payment verified, cost calculated successfully (US-003)</li>
+                  <li><span class="time">2 mins ago</span> Seating inventory updated (US-002)</li>
+                  <li><span class="time">3 mins ago</span> Case initiated, ticket request submitted (US-001)</li>
+                </ul>
+              </div>
+
+              <div class="btn-group">
+                <button class="pega-btn-primary" id="restart-flow">Create New Booking Case</button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="pega-footer">
+    <p>Powered by <strong>Pega Infinity™</strong> version 8.8.2. Smartbridge Pega Internship Project Delivery.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

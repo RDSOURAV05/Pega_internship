@@ -1,0 +1,655 @@
+/* =================================================================
+   PEGA INSPIRED DESIGN SYSTEM - CUSTOM STYLING
+   ================================================================= */
+
+:root {
+  --pega-blue-primary: #1F4E79; /* Pega Navy */
+  --pega-blue-light: #F0F4F8;   /* Background tints */
+  --pega-accent-blue: #297DFD;  /* Focus & Interactive elements */
+  --pega-green-success: #1E856D; /* Status Resolved */
+  --pega-red-error: #D13438;     /* Danger / Occupied */
+  --pega-border-color: #D1D5DB;  /* Input borders */
+  --pega-text-dark: #2F3E46;
+  --pega-text-light: #5C677D;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #F8F9FC;
+  color: var(--pega-text-dark);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Area */
+.pega-header {
+  background-color: var(--pega-blue-primary);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pega-logo {
+  background-color: white;
+  color: var(--pega-blue-primary);
+  font-weight: 800;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pega-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.app-sub {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.role-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Main Container */
+.pega-main {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.case-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Stage Chevron Tracker */
+.chevron-bar {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+}
+
+.chevron-step {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 10px;
+  background-color: white;
+  color: var(--pega-text-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: relative;
+  border-right: 1px solid #E5E7EB;
+}
+
+.chevron-step:last-child {
+  border-right: none;
+}
+
+.chevron-step.active {
+  background-color: var(--pega-blue-light);
+  color: var(--pega-blue-primary);
+}
+
+.chevron-step.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--pega-blue-primary);
+}
+
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #E5E7EB;
+  color: var(--pega-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.chevron-step.active .step-num {
+  background-color: var(--pega-blue-primary);
+  color: white;
+}
+
+.chevron-step.completed {
+  color: var(--pega-green-success);
+}
+
+.chevron-step.completed .step-num {
+  background-color: var(--pega-green-success);
+  color: white;
+}
+
+/* Case Card container */
+.case-card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.case-header {
+  background-color: #FAFAFB;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.case-id {
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--pega-blue-primary);
+  font-size: 1rem;
+}
+
+.case-status {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-active {
+  color: var(--pega-accent-blue);
+  background-color: #E6F0FF;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.status-completed {
+  color: var(--pega-green-success);
+  background-color: #E6F4EA;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* Body and stages layout */
+.case-body {
+  padding: 1.5rem;
+}
+
+.stage-section {
+  display: none;
+}
+
+.stage-section.active {
+  display: block;
+}
+
+.stage-section h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--pega-blue-primary);
+  margin-bottom: 0.5rem;
+}
+
+.stage-section .desc {
+  font-size: 0.95rem;
+  color: var(--pega-text-light);
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--pega-blue-primary);
+  padding-left: 10px;
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--pega-text-dark);
+}
+
+.form-group input, .form-group select {
+  padding: 10px;
+  border: 1px solid var(--pega-border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--pega-text-dark);
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--pega-accent-blue);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(41, 125, 253, 0.15);
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 1rem;
+  border-top: 1px solid #E5E7EB;
+  margin-top: 1.5rem;
+}
+
+.pega-btn-primary {
+  background-color: var(--pega-blue-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pega-btn-primary:hover {
+  background-color: #173B5C;
+}
+
+.pega-btn-primary:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+.pega-btn-secondary {
+  background-color: white;
+  color: var(--pega-text-dark);
+  border: 1px solid var(--pega-border-color);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pega-btn-secondary:hover {
+  background-color: #F3F4F6;
+}
+
+/* Seating grid area */
+.seating-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #FAFAFB;
+  border-radius: 8px;
+  border: 1px dashed var(--pega-border-color);
+}
+
+.screen-indicator {
+  width: 80%;
+  max-width: 400px;
+  background: linear-gradient(180deg, #E5E7EB 0%, #D1D5DB 100%);
+  color: var(--pega-text-light);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 6px 0;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.seating-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 40px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid var(--pega-border-color);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.seat.premium-row {
+  border-color: #B59410; /* Gold border for premium */
+  color: #B59410;
+}
+
+.seat:hover:not(.occupied) {
+  background-color: var(--pega-blue-light);
+  border-color: var(--pega-blue-primary);
+}
+
+.seat.selected {
+  background-color: var(--pega-green-success) !important;
+  color: white !important;
+  border-color: var(--pega-green-success) !important;
+}
+
+.seat.occupied {
+  background-color: #E5E7EB;
+  color: #9CA3AF;
+  border-color: #D1D5DB;
+  cursor: not-allowed;
+}
+
+.seat-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.seat-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: inline-block;
+  border: 1px solid var(--pega-border-color);
+}
+
+.seat-box.available {
+  background-color: white;
+}
+
+.seat-box.selected {
+  background-color: var(--pega-green-success);
+  border-color: var(--pega-green-success);
+}
+
+.seat-box.occupied {
+  background-color: #E5E7EB;
+}
+
+/* Invoice Styles */
+.invoice-card {
+  background-color: white;
+  border: 1px solid var(--pega-border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
+.invoice-card h3 {
+  border-bottom: 2px solid var(--pega-blue-primary);
+  color: var(--pega-blue-primary);
+  font-size: 1.1rem;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table td {
+  padding: 10px 0;
+  font-size: 0.95rem;
+  color: var(--pega-text-light);
+}
+
+.invoice-table td.val {
+  text-align: right;
+  font-weight: 600;
+  color: var(--pega-text-dark);
+}
+
+.invoice-table tr.divider td {
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0;
+  height: 1px;
+}
+
+.invoice-table tr.total-row td {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--pega-blue-primary);
+  padding-top: 15px;
+}
+
+.invoice-table tr.total-row td.val {
+  color: var(--pega-blue-primary);
+  font-size: 1.25rem;
+}
+
+.highlight-seats {
+  background-color: #F0FDF4;
+  color: var(--pega-green-success) !important;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.discount-val {
+  color: var(--pega-green-success) !important;
+}
+
+/* Success layout */
+.success-screen {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #E6F4EA;
+  color: var(--pega-green-success);
+  font-size: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(30, 133, 109, 0.1);
+}
+
+.success-screen h2 {
+  font-size: 1.6rem;
+  color: var(--pega-green-success);
+  margin-bottom: 0.5rem;
+}
+
+.ref-message {
+  font-size: 1rem;
+  color: var(--pega-text-light);
+  margin-bottom: 2rem;
+}
+
+.resolved-lbl {
+  color: var(--pega-green-success);
+  background-color: #E6F4EA;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.details-summary {
+  background-color: #FAFAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 1.25rem;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  text-align: left;
+}
+
+.details-summary p {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #F3F4F6;
+  font-size: 0.95rem;
+}
+
+.details-summary p:last-child {
+  border-bottom: none;
+}
+
+/* Timeline */
+.timeline-area {
+  max-width: 500px;
+  margin: 2rem auto 1rem auto;
+  text-align: left;
+  border-top: 1px solid #E5E7EB;
+  padding-top: 1.5rem;
+}
+
+.timeline-area h4 {
+  color: var(--pega-blue-primary);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  width: 2px;
+  background-color: #E5E7EB;
+}
+
+.timeline li {
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  color: var(--pega-text-dark);
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #CBD5E1;
+  border: 2px solid white;
+}
+
+.timeline li:first-child::before {
+  background-color: var(--pega-accent-blue);
+  box-shadow: 0 0 0 3px rgba(41, 125, 253, 0.2);
+}
+
+.timeline .time {
+  color: #9CA3AF;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Footer styling */
+.pega-footer {
+  background-color: white;
+  border-top: 1px solid #E5E7EB;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--pega-text-light);
+}
+
+@media (max-width: 600px) {
+  .chevron-step .step-text {
+    display: none;
+  }
+  .pega-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
