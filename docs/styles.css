@@ -67,15 +67,19 @@ body {
 
 /* Header Area */
 .pega-header {
-  background-color: #1E293B;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: white;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #334155;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
   z-index: 10;
+  position: sticky;
+  top: 0;
 }
 
 .logo-area {
@@ -85,16 +89,17 @@ body {
 }
 
 .pega-logo {
-  background-color: white;
-  color: var(--pega-blue-primary);
-  font-weight: 800;
+  background: linear-gradient(135deg, #38BDF8, #818CF8);
+  color: white;
+  font-weight: 900;
   font-size: 1.5rem;
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
 .pega-text {
@@ -103,33 +108,54 @@ body {
 }
 
 .app-title {
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: 800;
+  font-size: 1.25rem;
   letter-spacing: 0.5px;
+  background: linear-gradient(to right, #F8FAFC, #CBD5E1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .app-sub {
   font-size: 0.8rem;
-  opacity: 0.8;
+  color: #94A3B8;
+  font-weight: 500;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .role-badge {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(56, 189, 248, 0.1);
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
   padding: 4px 10px;
   font-size: 0.75rem;
   border-radius: 12px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .user-name {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
+  color: #F1F5F9;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 /* Main Container */
@@ -151,11 +177,14 @@ body {
 /* Stage Tracker / Chevron Bar */
 .chevron-bar {
   display: flex;
-  background-color: #1E293B;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #334155;
-  overflow: hidden;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px;
+  gap: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .chevron-step {
@@ -163,59 +192,88 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 10px;
-  background-color: #1E293B;
+  gap: 10px;
+  padding: 10px 14px;
+  background: transparent;
   color: #94A3B8;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  border-right: 1px solid #334155;
+  overflow: hidden;
 }
 
 .chevron-step:last-child {
   border-right: none;
 }
 
+.chevron-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chevron-step:hover::before {
+  opacity: 1;
+}
+
 .chevron-step.active {
-  background-color: #334155;
+  background: linear-gradient(135deg, #1E293B, #0F172A);
   color: #F8FAFC;
+  border-color: rgba(56, 189, 248, 0.2);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .chevron-step.active::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: var(--pega-accent-blue);
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, #38BDF8, #818CF8);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
 .step-num {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background-color: #475569;
+  background-color: #334155;
   color: #CBD5E1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .chevron-step.active .step-num {
-  background-color: var(--pega-accent-blue);
+  background: linear-gradient(135deg, #38BDF8, #818CF8);
   color: white;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  border-color: transparent;
 }
 
 .chevron-step.completed {
-  color: var(--pega-green-success);
+  color: #34D399;
 }
 
 .chevron-step.completed .step-num {
-  background-color: var(--pega-green-success);
-  color: white;
+  background: rgba(52, 211, 153, 0.15);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 /* Case Card Container */
