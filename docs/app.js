@@ -231,11 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Status Indicators
     const statusLabel = document.getElementById("case-status-label");
+    const stageNames = ["Initial Stage", "Availability", "Approval", "Booking Execution"];
     if (stageNum === 4) {
       statusLabel.innerText = "Resolved-Completed";
       statusLabel.className = "status-completed";
     } else {
-      statusLabel.innerText = `Stage ${stageNum}`;
+      statusLabel.innerText = stageNames[stageNum - 1];
       statusLabel.className = "status-active";
     }
   }
@@ -375,6 +376,10 @@ document.addEventListener("DOMContentLoaded", () => {
     invoiceTax.innerText = bookingState.taxTotal.toFixed(2);
     invoiceDiscount.innerText = bookingState.discountTotal.toFixed(2);
     invoiceNetTotal.innerText = bookingState.netTotal.toFixed(2);
+
+    // Set dynamic Pega Queue routing based on Show Type (Premium vs Standard)
+    const routingQueue = bookingState.ticketCategory === "Premium" ? "Premium ShowQueue" : "Standard ShowQueue";
+    document.getElementById("invoice-routing").innerText = routingQueue;
   }
 
   nextTo3Btn.addEventListener("click", () => {
@@ -390,6 +395,10 @@ document.addEventListener("DOMContentLoaded", () => {
     confTheater.innerText = bookingState.selectedTheater;
     confSeats.innerText = bookingState.selectedSeats.join(", ");
     confAmount.innerText = bookingState.netTotal.toFixed(2);
+
+    // Set Routing Work Queue label in confirmation summary
+    const routingQueue = bookingState.ticketCategory === "Premium" ? "Premium ShowQueue" : "Standard ShowQueue";
+    document.getElementById("conf-routing").innerText = routingQueue;
 
     transitionToStage(4);
   });

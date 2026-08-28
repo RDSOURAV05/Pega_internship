@@ -38,7 +38,7 @@
       <div class="chevron-bar">
         <div class="chevron-step active" id="chev-1">
           <span class="step-num">1</span>
-          <span class="step-text">Request</span>
+          <span class="step-text">Initial Stage</span>
         </div>
         <div class="chevron-step" id="chev-2">
           <span class="step-num">2</span>
@@ -46,11 +46,11 @@
         </div>
         <div class="chevron-step" id="chev-3">
           <span class="step-num">3</span>
-          <span class="step-text">Calculation</span>
+          <span class="step-text">Approval</span>
         </div>
         <div class="chevron-step" id="chev-4">
           <span class="step-num">4</span>
-          <span class="step-text">Confirmation</span>
+          <span class="step-text">Booking Execution</span>
         </div>
       </div>
 
@@ -252,6 +252,17 @@
                   <td>Total Net Payable</td>
                   <td class="val">₹<span id="invoice-net-total">0.00</span></td>
                 </tr>
+                <tr class="divider">
+                  <td colspan="2"></td>
+                </tr>
+                <tr>
+                  <td style="font-size: 0.8rem; color: #94A3B8;">Automated Case Routing</td>
+                  <td class="val" style="font-size: 0.8rem;"><span id="invoice-routing" style="color: #38BDF8; font-weight: 700;">Standard ShowQueue</span></td>
+                </tr>
+                <tr>
+                  <td style="font-size: 0.8rem; color: #94A3B8;">Active Case SLA Limits</td>
+                  <td class="val" style="color: #F59E0B; font-weight: 700; font-size: 0.8rem;">Goal: 1 Day | Deadline: 2 Days</td>
+                </tr>
               </table>
             </div>
 
@@ -274,15 +285,19 @@
                 <p><strong>Theater:</strong> <span id="conf-theater">Theater Name</span></p>
                 <p><strong>Seats Booked:</strong> <span id="conf-seats">A1, A2</span></p>
                 <p><strong>Amount Paid:</strong> ₹<span id="conf-amount">0.00</span></p>
+                <p><strong>Pega SLA Settings:</strong> <span style="color: #F59E0B; font-weight: 700;">Goal: 1 Day | Deadline: 2 Days</span></p>
+                <p><strong>Routing Work Queue:</strong> <span id="conf-routing" style="color: #38BDF8; font-weight: 700;">Standard ShowQueue</span></p>
+                <p><strong>Correspondence:</strong> <span style="color: #34D399; font-weight: 700;">✓ Confirmation Email Sent</span></p>
               </div>
               
               <div class="timeline-area">
                 <h4>Case Lifecycle History Log</h4>
                 <ul class="timeline">
+                  <li><span class="time">Just Now</span> Correspondence email dispatched to customer</li>
                   <li><span class="time">Just Now</span> Case Status Transitioned to <strong>Resolved-Completed</strong></li>
-                  <li><span class="time">1 min ago</span> Payment verified, cost calculated successfully (US-003)</li>
-                  <li><span class="time">2 mins ago</span> Seating inventory updated (US-002)</li>
-                  <li><span class="time">3 mins ago</span> Case initiated, ticket request submitted (US-001)</li>
+                  <li><span class="time">1 min ago</span> Payment verified, cost calculated, routed to queue (US-003)</li>
+                  <li><span class="time">2 mins ago</span> Seating inventory verified & allocated (US-002)</li>
+                  <li><span class="time">3 mins ago</span> Case initiated via Pega Blueprint scaffolding (US-001)</li>
                 </ul>
               </div>
 

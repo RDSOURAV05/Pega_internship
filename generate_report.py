@@ -51,69 +51,64 @@ def generate_report():
     # Title Page
     title_p = doc.add_paragraph()
     title_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    title_p.paragraph_format.space_before = Pt(120)
+    title_p.paragraph_format.space_before = Pt(100)
     title_p.paragraph_format.space_after = Pt(12)
-    title_run = title_p.add_run("Kerala Movie Ticket Booking\nManagement Application")
+    title_run = title_p.add_run("Movie Ticket Request Application\n(Kerala Theatrical Catalog)")
     title_run.font.name = 'Arial'
     title_run.font.size = Pt(26)
     title_run.font.bold = True
-    title_run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79) # Navy Blue
+    title_run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79) # Pega Navy
     
     subtitle_p = doc.add_paragraph()
     subtitle_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    subtitle_p.paragraph_format.space_after = Pt(200)
-    subtitle_run = subtitle_p.add_run("Pega's National Internship Program\nCapstone Project Implementation Document")
+    subtitle_p.paragraph_format.space_after = Pt(180)
+    subtitle_run = subtitle_p.add_run("Pega National Internship Program Capstone Deliverable\nSystem Implementation & Verification Report")
     subtitle_run.font.name = 'Arial'
-    subtitle_run.font.size = Pt(14)
+    subtitle_run.font.size = Pt(13)
     subtitle_run.font.italic = True
     subtitle_run.font.color.rgb = RGBColor(0x59, 0x59, 0x59)
     
     meta_p = doc.add_paragraph()
     meta_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    meta_run = meta_p.add_run("Prepared by: R. D. Sourav\nDate: August 2026\nUniversity: APJ Abdul Kalam Technological University")
+    meta_run = meta_p.add_run("Intern Name: R. D. Sourav\nCase Type Name: Movie Ticket Request\nUniversity: APJ Abdul Kalam Technological University")
     meta_run.font.name = 'Arial'
     meta_run.font.size = Pt(11)
-    meta_run.font.color.rgb = RGBColor(0x7F, 0x7F, 0x7F)
+    meta_run.font.bold = True
+    meta_run.font.color.rgb = RGBColor(0x2F, 0x3E, 0x46)
     
     doc.add_page_break()
     
-    # Section 1: Executive Summary
+    # Section 1: Executive Summary & Scaffold
     h1 = doc.add_heading(level=1)
-    h1.paragraph_format.space_before = Pt(12)
-    h1.paragraph_format.space_after = Pt(6)
-    run = h1.add_run("1. Executive Summary")
+    run = h1.add_run("1. Executive Summary & Blueprint Scaffold")
     run.font.name = 'Arial'
     run.font.size = Pt(18)
     run.font.bold = True
     run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
     
     doc.add_paragraph(
-        "This project documentation report presents the architectural design, implementation strategy, "
-        "and user story validation details for the Kerala Movie Ticket Booking Management Application. "
-        "Built on Pega Infinity, the application delivers a modern, automated system for reserving Malayalam movie "
-        "tickets (such as Kathanar, Toxic, Khalifa, and Bethlehem Kudumba Unit) across premium Kerala cinemas "
-        "(Aries Plex SL, PVR IMAX, RAGAM Thrissur). "
-        "The system calculates dynamic ticket pricing, checks seat availability in real-time, and generates digital booking confirmations."
+        "This project report documents the implementation of the 'Movie Ticket Request' case type on the Pega Academy platform. "
+        "The application scaffold was initiated using Pega Blueprint to outline Case Stages, Data Objects, and Routing rules. "
+        "The system manages reservation requests for Malayalam theatrical releases in Kerala cinemas (such as Aries Plex and PVR IMAX). "
+        "It validates seat occupancy, computes booking costs with bulk discounts, applies service SLAs, and executes automated queue routing based on ticket tiers."
     )
     
-    # Section 2: Case Lifecycle & Architecture
+    # Section 2: Case Lifecycle Design
     h2 = doc.add_heading(level=1)
-    run = h2.add_run("2. Case Lifecycle Design & Architecture")
+    run = h2.add_run("2. Case Lifecycle Stage Configuration")
     run.font.name = 'Arial'
     run.font.size = Pt(18)
     run.font.bold = True
     run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
     
     doc.add_paragraph(
-        "The core case type designed is the 'Movie Booking' case. It represents a single transaction "
-        "from the customer's intent to watch a movie up to their successful booking and ticket dispatch."
+        "Following the Pega Academy exercise guidelines, the 'Movie Ticket Request' case type was structured "
+        "with four core stages and specific automation checkpoints:"
     )
-    
-    doc.add_paragraph("The case stages are configured as follows:")
     
     table = doc.add_table(rows=5, cols=3)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    headers = ["Stage", "Steps Included", "Pega Rules Configured"]
+    headers = ["Stage Name", "Process / Steps", "Configured Rules & SLA"]
     for i, head in enumerate(headers):
         cell = table.cell(0, i)
         cell.text = head
@@ -124,10 +119,10 @@ def generate_report():
         run.font.color.rgb = RGBColor(255, 255, 255)
         
     stages_data = [
-        ("1. Request Stage", "Submit Movie Ticket Request (Form UI)", "Collect Information Step, Section Rules, Properties"),
-        ("2. Availability Stage", "Check Show Availability (Display seating plan)", "Custom Seating Grid, Flow Actions, Data Pages"),
-        ("3. Calculation Stage", "Calculate Booking Cost (Pricing rules)", "Data Transforms, Decision Tables, Declare Expressions"),
-        ("4. Confirmation Stage", "Generate Confirmation (Receipt generation)", "Email Notification, Resolved Status transition")
+        ("1. Initial Stage", "Submit Movie Ticket Request form (customer & movie fields)", "Collect Information Step, Movie & Show Data Objects"),
+        ("2. Availability", "Check Show Availability (Seat grid visualizer)", "Data Page verification, Row categories validation"),
+        ("3. Approval", "Calculate Booking Cost (Calculate properties & check)", "Declare Expressions, 18% Tax, 10% Bulk Discount"),
+        ("4. Booking Execution", "Case Resolution & Confirmation (Ticket release)", "Email Correspondence, Case Status (Resolved-Completed)")
     ]
     
     for row_idx, (stage, steps, rules) in enumerate(stages_data, start=1):
@@ -142,40 +137,58 @@ def generate_report():
                 
     doc.add_paragraph().paragraph_format.space_after = Pt(12)
     
-    # Section 3: User Story Implementation
+    # Section 3: Detailed Technical Implementations
     h3 = doc.add_heading(level=1)
-    run = h3.add_run("3. User Story Implementation")
+    run = h3.add_run("3. System Specifications & Implementations")
     run.font.name = 'Arial'
     run.font.size = Pt(18)
     run.font.bold = True
     run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
     
-    # US-001
-    doc.add_heading("US-001: Submit Movie Ticket Request", level=2)
+    # Data Structures
+    doc.add_heading("3.1 Data Structures (Movie & Show Data Objects)", level=2)
     doc.add_paragraph(
-        "Objective: To allow users to submit show selection details. The interface captures inputs "
-        "including Movie Name, Theater Location, Date, Showtime, Ticket Category, and Quantity. "
-        "Form validation prevents negative ticket entries and past show dates. Movies are loaded from the "
-        "active Kerala releases catalog (e.g. Bethlehem Kudumba Unit, Toxic, Kathanar)."
+        "Two core Pega Data Objects were established to support this booking flow:\n"
+        "• Movie Data Object: Stores metadata for available films, including Title, Cast, Genre, and Release Date.\n"
+        "• Show Data Object: Stores operational variables, including Theater Location, Date, Showtime, Available Seats, and Pricing Tiers."
     )
     
-    # US-002
-    doc.add_heading("US-002: Check Show Availability", level=2)
+    # Calculations
+    doc.add_heading("3.2 Total Cost Calculated Properties", level=2)
     doc.add_paragraph(
-        "Objective: To query seat inventories and display an interactive seating plan. The interface displays "
-        "occupied seats as red/disabled, and available seats as selectable buttons. It restricts the user from selecting "
-        "more seats than the requested quantity specified in Stage 1."
+        "Pricing logic was implemented in an automated calculation engine. Standard seats are valued at ₹150, and Premium seats are valued at ₹300. "
+        "The system automatically computes the total cost using the following rule parameters:\n"
+        "• Base Ticket Cost = Selected Seats x Category Rate\n"
+        "• Service Tax / GST = Base Ticket Cost x 18%\n"
+        "• Bulk Booking Discount = 10% of Base Ticket Cost (triggered only if Ticket Quantity >= 4)\n"
+        "• Net Total Cost = Base Ticket Cost + Service Tax - Bulk Discount"
     )
     
-    # US-003
-    doc.add_heading("US-003: Calculate Booking Cost", level=2)
+    # SLA Logic
+    doc.add_heading("3.3 Service Level Agreement (SLA) Configuration", level=2)
     doc.add_paragraph(
-        "Objective: To apply pricing logic. The system uses a Declare Expression or Data Transform to multiply "
-        "the selected seats by the ticket category price (Standard = ₹150, Premium = ₹300), adds service taxes (18%), "
-        "applies a 10% bulk discount for bookings of 4 or more tickets, and renders a detailed price breakdown in Indian Rupees (INR) before case resolution."
+        "To ensure reservations are processed in a timely manner, an SLA rule was attached to the case type:\n"
+        "• Goal: 1 Day (The booking must be calculated and approved within 24 hours of creation).\n"
+        "• Deadline: 2 Days (Urgent processing actions are triggered if the case remains unresolved after 48 hours)."
     )
     
-    # Section 4: Screenshot Verification Tables
+    # Work Queue Routing
+    doc.add_heading("3.4 Work Queue Routing (Premium vs. Standard)", level=2)
+    doc.add_paragraph(
+        "To balance workflow tasks, routing rules direct cases based on Show Type:\n"
+        "• Premium Tickets: Automatically routed to Premium ShowQueue for priority audit.\n"
+        "• Standard Tickets: Automatically routed to Standard ShowQueue."
+    )
+    
+    # Correspondence
+    doc.add_heading("3.5 Email Correspondence Rules", level=2)
+    doc.add_paragraph(
+        "An email correspondence rule is triggered during the Booking Execution stage. "
+        "Upon successful payment calculation and seat locking, an automated HTML email is compiled and dispatched to the customer's registered email address "
+        "detailing their Reference ID, Seats, Theater, and Payment Receipt."
+    )
+    
+    # Section 4: Verification Checkpoints
     doc.add_page_break()
     h4 = doc.add_heading(level=1)
     run = h4.add_run("4. Screenshots & Verification Checkpoints")
@@ -185,8 +198,7 @@ def generate_report():
     run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
     
     doc.add_paragraph(
-        "The following tables provide sections for pasting the required screenshots to verify "
-        "full project completion within the Pega Platform."
+        "The following sections contain the execution screenshots captured during system run verification:"
     )
     
     def add_screenshot_box(title, description):
@@ -201,7 +213,7 @@ def generate_report():
         box_table.alignment = WD_TABLE_ALIGNMENT.CENTER
         cell = box_table.cell(0, 0)
         set_cell_background(cell, "FAFAFA")
-        set_cell_margins(cell, 1500, 1500, 1000, 1000) # Tall cell for pasting
+        set_cell_margins(cell, 1500, 1500, 1000, 1000)
         cell.paragraphs[0].text = "\n\n\n[ Paste Pega Screenshot Here ]\n\n\n"
         cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
         cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0x99, 0x99, 0x99)
@@ -209,15 +221,15 @@ def generate_report():
         
         doc.add_paragraph().paragraph_format.space_after = Pt(12)
         
-    add_screenshot_box("Pega Case Lifecycle Flow Layout", "Capture the completed stage-step workflow showing Request, Availability, Calculation, and Confirmation stages in App Studio.")
-    add_screenshot_box("US-001: Submit Ticket Request Screen UI", "Capture the interactive user interface displaying the form where users select their movie, location, and ticket category.")
-    add_screenshot_box("US-002: Interactive Seating Map Selection", "Capture the custom visual layout showing the seating grid, with some seats booked and others highlighted during active selection.")
-    add_screenshot_box("US-003: Cost Calculation Rules and Totals", "Capture the billing page showing the detailed breakdown of basic fare, tax, discounts, and final computed total.")
-    add_screenshot_box("Resolved-Completed Case Status Screen", "Capture the final confirmation UI displaying a generated transaction reference ID and green checked status indicators.")
+    add_screenshot_box("Pega Case Lifecycle Flow (Initial, Availability, Approval, Booking Execution)", "Scaffolded workflow showing Pega case stages, routing nodes, and SLA configurations.")
+    add_screenshot_box("US-001: Initial Stage Movie Ticket Request UI", "Submit Movie Ticket Request form showing Customer details, select Kerala Theater, and selected movie poster card.")
+    add_screenshot_box("US-002: Availability Stage Seating Map UI", "Check Show Availability seat map showing standard rows, premium rows, occupied seats, and selected seat nodes.")
+    add_screenshot_box("US-003: Approval Stage Cost Calculation UI", "Receipt billing invoice showing Base Fare, 18% Tax, 10% Bulk Discount deduction, and total net payable.")
+    add_screenshot_box("Booking Execution Resolved Case Confirmation", "Resolved-Completed case page displaying transaction reference ID, SLA timelines, and case status transition log.")
     
     # Save document
-    doc.save("C:\\Users\\PRO\\OneDrive\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
-    print("Report generated successfully as Pega_Movie_Ticket_Booking_Report.docx!")
+    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
+    print("Report generated successfully with Pega specifications!")
 
 if __name__ == "__main__":
     generate_report()
