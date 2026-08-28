@@ -164,6 +164,20 @@
                     <label for="ticket-qty">Quantity (Tickets)</label>
                     <input type="number" id="ticket-qty" min="1" max="10" placeholder="1-10" required>
                   </div>
+                  <div class="form-group">
+                    <label for="show-date">Show Date</label>
+                    <input type="date" id="show-date" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="show-time">Show Time</label>
+                    <select id="show-time" required>
+                      <option value="" disabled selected>Select a show time...</option>
+                      <option value="11:00 AM">11:00 AM (Matinee)</option>
+                      <option value="02:30 PM">02:30 PM (First Show)</option>
+                      <option value="06:30 PM">06:30 PM (Second Show)</option>
+                      <option value="09:30 PM">09:30 PM (Night Show)</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="btn-group">
                   <button type="submit" class="pega-btn-primary">Next: Choose Seats</button>
@@ -230,6 +244,10 @@
                   <td class="val"><span id="invoice-movie">Movie</span> @ <span id="invoice-theater">Theater</span></td>
                 </tr>
                 <tr>
+                  <td>Show Date & Time</td>
+                  <td class="val"><span id="invoice-date">Date</span> @ <span id="invoice-time">Time</span></td>
+                </tr>
+                <tr>
                   <td>Seats Reserved</td>
                   <td class="val highlight-seats" id="invoice-seats">A1, A2</td>
                 </tr>
@@ -283,6 +301,7 @@
                 <p><strong>Transaction Reference:</strong> <span id="conf-trans-id">PEGA-MB-2026-XXXX</span></p>
                 <p><strong>Movie:</strong> <span id="conf-movie">Movie Title</span></p>
                 <p><strong>Theater:</strong> <span id="conf-theater">Theater Name</span></p>
+                <p><strong>Show Date & Time:</strong> <span id="conf-date-time">Date @ Time</span></p>
                 <p><strong>Seats Booked:</strong> <span id="conf-seats">A1, A2</span></p>
                 <p><strong>Amount Paid:</strong> ₹<span id="conf-amount">0.00</span></p>
                 <p><strong>Pega SLA Settings:</strong> <span style="color: #F59E0B; font-weight: 700;">Goal: 1 Day | Deadline: 2 Days</span></p>

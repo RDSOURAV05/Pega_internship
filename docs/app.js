@@ -76,6 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
     customerEmail: "",
     selectedMovie: "",
     selectedTheater: "",
+    showDate: "",
+    showTime: "",
     ticketCategory: "Standard",
     ticketQty: 1,
     selectedSeats: [],
@@ -246,10 +248,24 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     
     // Capture state
+    const showDateVal = document.getElementById("show-date").value;
+    const showTimeVal = document.getElementById("show-time").value;
+    
+    // Pega-style Date Validation Rule: Prevent past dates
+    const selectedDate = new Date(showDateVal);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate < today) {
+      alert("Validation Error: Show Date cannot be in the past!");
+      return;
+    }
+    
     bookingState.customerName = document.getElementById("cust-name").value;
     bookingState.customerEmail = document.getElementById("cust-email").value;
     bookingState.selectedMovie = document.getElementById("movie-select").value;
     bookingState.selectedTheater = document.getElementById("theater-select").value;
+    bookingState.showDate = showDateVal;
+    bookingState.showTime = showTimeVal;
     bookingState.ticketCategory = document.getElementById("ticket-type").value;
     bookingState.ticketQty = parseInt(document.getElementById("ticket-qty").value, 10);
     bookingState.basePriceRate = bookingState.ticketCategory === "Premium" ? premiumPrice : standardPrice;
@@ -369,6 +385,8 @@ document.addEventListener("DOMContentLoaded", () => {
     invoiceEmail.innerText = bookingState.customerEmail;
     invoiceMovie.innerText = bookingState.selectedMovie;
     invoiceTheater.innerText = bookingState.selectedTheater;
+    document.getElementById("invoice-date").innerText = bookingState.showDate;
+    document.getElementById("invoice-time").innerText = bookingState.showTime;
     invoiceSeats.innerText = bookingState.selectedSeats.join(", ");
     invoiceQty.innerText = bookingState.ticketQty;
     invoiceBaseRate.innerText = bookingState.basePriceRate;
@@ -393,6 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confTransId.innerText = bookingState.caseId;
     confMovie.innerText = bookingState.selectedMovie;
     confTheater.innerText = bookingState.selectedTheater;
+    document.getElementById("conf-date-time").innerText = bookingState.showDate + " @ " + bookingState.showTime;
     confSeats.innerText = bookingState.selectedSeats.join(", ");
     confAmount.innerText = bookingState.netTotal.toFixed(2);
 
