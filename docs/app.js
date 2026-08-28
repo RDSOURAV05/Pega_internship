@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Nivin Pauly, Mamitha Baiju",
       release: "21 August 2026",
       className: "poster-bethlehem",
-      initials: "BKU"
+      posterUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Bethlehem_Kudumba_Unit_Movie_Poster.jpg/250px-Bethlehem_Kudumba_Unit_Movie_Poster.jpg"
     },
     "Khalifa – The Ruler": {
       title: "Khalifa – The Ruler",
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Prithviraj Sukumaran",
       release: "August 2026",
       className: "poster-khalifa",
-      initials: "KLR"
+      posterUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Khalifa_film_2026_poster.jpg/250px-Khalifa_film_2026_poster.jpg"
     },
     "Thudakkam": {
       title: "Thudakkam",
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "New Cast & Crew",
       release: "August 2026",
       className: "poster-thudakkam",
-      initials: "TDK"
+      posterUrl: "https://upload.wikimedia.org/wikipedia/en/a/a5/Thudakkam_Movie_First_Look_Poster.jpg"
     },
     "Toxic: A Fairy Tale for Grown-ups": {
       title: "Toxic: A Fairy Tale",
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Yash, Kiara Advani, Nayanthara",
       release: "26 August 2026",
       className: "poster-toxic",
-      initials: "TXC"
+      posterUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/Toxic-_A_Fairy_Tale_for_Grown-Ups_poster.jpg/250px-Toxic-_A_Fairy_Tale_for_Grown-Ups_poster.jpg"
     },
     "Bhogi": {
       title: "Bhogi",
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Sharwanand, Anupama Parameswaran",
       release: "28 August 2026",
       className: "poster-bhogi",
-      initials: "BGI"
+      posterUrl: "https://cf-images.assettype.com/cinemaexpress%2F2026-02-25%2F9hp5l7bh%2FSharwanandBhogi.jpg"
     },
     "Theri Meri": {
       title: "Theri Meri",
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Sreenath Bhasi, Shine Tom Chacko",
       release: "28 August 2026",
       className: "poster-theri",
-      initials: "TMR"
+      posterUrl: "https://m.media-amazon.com/images/M/MV5BMTA0NzYzNzYtY2Y3Yy00NDE5LWJiOTQtZTY5YjE3MDgwMDM2XkEyXkFqcGc@._V1_.jpg"
     },
     "Nere Chovva": {
       title: "Nere Chovva",
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Kunchacko Boban, Manju Warrier",
       release: "28 August 2026",
       className: "poster-nere",
-      initials: "NCV"
+      posterUrl: "https://static.toiimg.com/thumb/imgsize-119732,msid-129928496,width-1000,height-250,resizemode-75/129928496.jpg"
     },
     "Kathanar – The Wild Sorcerer": {
       title: "Kathanar: Wild Sorcerer",
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cast: "Jayasurya, Anushka Shetty",
       release: "28 August 2026",
       className: "poster-kathanar",
-      initials: "KTH"
+      posterUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Kathanar_-_The_Wild_Sorcerer_poster.jpg/250px-Kathanar_-_The_Wild_Sorcerer_poster.jpg"
     }
   };
 
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (movie) {
       moviePosterCard.className = `movie-poster-card ${movie.className}`;
-      posterArt.innerText = movie.initials;
+      posterArt.innerHTML = `<img class="selected-poster-img" src="${movie.posterUrl}" alt="${movie.title}">`;
       posterTitle.innerText = movie.title;
       posterGenre.innerHTML = `<strong>Genre:</strong> ${movie.genre}`;
       posterCast.innerHTML = `<strong>Cast:</strong> ${movie.cast}`;

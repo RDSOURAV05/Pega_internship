@@ -361,6 +361,24 @@ body {
   text-transform: uppercase;
 }
 
+.card-art-img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #334155;
+  transition: transform 0.3s ease;
+}
+
+.now-showing-card:hover .card-art-img {
+  transform: scale(1.05);
+}
+
+.selected-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-details {
   padding: 10px;
   flex: 1;
