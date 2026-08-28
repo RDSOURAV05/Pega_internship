@@ -229,7 +229,8 @@ def generate_report():
     
     # Save document
     doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
-    print("Report generated successfully with Pega specifications!")
+    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\RD_Sourav.docx")
+    print("Report generated successfully as both Pega_Movie_Ticket_Booking_Report.docx and RD_Sourav.docx!")
 
 if __name__ == "__main__":
     generate_report()
