@@ -1,3 +1,4 @@
+import os
 import docx
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -201,7 +202,7 @@ def generate_report():
         "The following sections contain the execution screenshots captured during system run verification:"
     )
     
-    def add_screenshot_box(title, description):
+    def add_screenshot_box(title, description, image_filename):
         p = doc.add_paragraph()
         run = p.add_run(f"■ {title}")
         run.font.bold = True
@@ -213,19 +214,28 @@ def generate_report():
         box_table.alignment = WD_TABLE_ALIGNMENT.CENTER
         cell = box_table.cell(0, 0)
         set_cell_background(cell, "FAFAFA")
-        set_cell_margins(cell, 1500, 1500, 1000, 1000)
-        cell.paragraphs[0].text = "\n\n\n[ Paste Pega Screenshot Here ]\n\n\n"
-        cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-        cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0x99, 0x99, 0x99)
-        cell.paragraphs[0].runs[0].font.italic = True
+        set_cell_margins(cell, 200, 200, 200, 200) # tight margin for image
         
+        cell_p = cell.paragraphs[0]
+        cell_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        image_path = os.path.join("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\screenshots", image_filename)
+        if os.path.exists(image_path):
+            run = cell_p.add_run()
+            # Set width to 5.5 inches to fit nicely in 8.5-inch page with 1-inch margins
+            run.add_picture(image_path, width=Inches(5.5))
+        else:
+            run = cell_p.add_run(f"\n\n\n[ Screenshot File Not Found: {image_filename} ]\n\n\n")
+            run.font.italic = True
+            run.font.color.rgb = RGBColor(0x99, 0x99, 0x99)
+            
         doc.add_paragraph().paragraph_format.space_after = Pt(12)
         
-    add_screenshot_box("Pega Case Lifecycle Flow (Initial, Availability, Approval, Booking Execution)", "Scaffolded workflow showing Pega case stages, routing nodes, and SLA configurations.")
-    add_screenshot_box("US-001: Initial Stage Movie Ticket Request UI", "Submit Movie Ticket Request form showing Customer details, select Kerala Theater, and selected movie poster card.")
-    add_screenshot_box("US-002: Availability Stage Seating Map UI", "Check Show Availability seat map showing standard rows, premium rows, occupied seats, and selected seat nodes.")
-    add_screenshot_box("US-003: Approval Stage Cost Calculation UI", "Receipt billing invoice showing Base Fare, 18% Tax, 10% Bulk Discount deduction, and total net payable.")
-    add_screenshot_box("Booking Execution Resolved Case Confirmation", "Resolved-Completed case page displaying transaction reference ID, SLA timelines, and case status transition log.")
+    add_screenshot_box("Pega Case Lifecycle Flow (Initial, Availability, Approval, Booking Execution)", "Scaffolded workflow showing Pega case stages, routing nodes, and SLA configurations.", "1_case_lifecycle.png")
+    add_screenshot_box("US-001: Initial Stage Movie Ticket Request UI", "Submit Movie Ticket Request form showing Customer details, select Kerala Theater, and selected movie poster card.", "2_submit_request.png")
+    add_screenshot_box("US-002: Availability Stage Seating Map UI", "Check Show Availability seat map showing standard rows, premium rows, occupied seats, and selected seat nodes.", "3_seating_map.png")
+    add_screenshot_box("US-003: Approval Stage Cost Calculation UI", "Receipt billing invoice showing Base Fare, 18% Tax, 10% Bulk Discount deduction, and total net payable.", "4_cost_calculation.png")
+    add_screenshot_box("Booking Execution Resolved Case Confirmation", "Resolved-Completed case page displaying transaction reference ID, SLA timelines, and case status transition log.", "5_case_resolution.png")
     
     # Save document
     doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
