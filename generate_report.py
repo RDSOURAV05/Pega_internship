@@ -238,9 +238,8 @@ def generate_report():
     add_screenshot_box("Booking Execution Resolved Case Confirmation", "Resolved-Completed case page displaying transaction reference ID, SLA timelines, and case status transition log.", "5_case_resolution.png")
     
     # Save document
-    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
-    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\RD_Sourav.docx")
-    print("Report generated successfully as both Pega_Movie_Ticket_Booking_Report.docx and RD_Sourav.docx!")
+    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\R_D_Sourav_Report.docx")
+    print("Report generated successfully as R_D_Sourav_Report.docx!")
 
 if __name__ == "__main__":
     generate_report()
