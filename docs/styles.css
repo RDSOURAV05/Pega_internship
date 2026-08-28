@@ -1,5 +1,5 @@
 /* =================================================================
-   PEGA INSPIRED DESIGN SYSTEM - CUSTOM STYLING
+   PEGA INSPIRED DESIGN SYSTEM - KERALA THEATER RELEASES
    ================================================================= */
 
 :root {
@@ -21,12 +21,66 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #F8F9FC;
+  background-color: #F3F4F6;
   color: var(--pega-text-dark);
   line-height: 1.5;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Watermark Posters */
+.bg-posters-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px 150px;
+  padding: 80px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+.bg-poster {
+  border: 15px solid #000;
+  border-radius: 8px;
+  height: 380px;
+  font-weight: 800;
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: #000;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: rotate(-5deg);
+}
+
+.bg-poster:nth-child(even) {
+  transform: rotate(5deg);
+}
+
+.p-bethlehem {
+  background: linear-gradient(135deg, #FFE066 0%, #F5A623 100%);
+}
+
+.p-khalifa {
+  background: linear-gradient(135deg, #1A1A1A 0%, #D0021B 100%);
+}
+
+.p-toxic {
+  background: linear-gradient(135deg, #4A90E2 0%, #50E3C2 100%);
+}
+
+.p-kathanar {
+  background: linear-gradient(135deg, #417505 0%, #9013FE 100%);
 }
 
 /* Header Area */
@@ -38,6 +92,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .logo-area {
@@ -97,10 +152,11 @@ body {
 /* Main Container */
 .pega-main {
   flex: 1;
-  max-width: 1000px;
+  max-width: 1050px;
   width: 100%;
   margin: 2rem auto;
   padding: 0 1rem;
+  z-index: 5;
 }
 
 .case-container {
@@ -109,7 +165,7 @@ body {
   gap: 1.5rem;
 }
 
-/* Stage Chevron Tracker */
+/* Stage Tracker / Chevron Bar */
 .chevron-bar {
   display: flex;
   background-color: white;
@@ -179,7 +235,7 @@ body {
   color: white;
 }
 
-/* Case Card container */
+/* Case Card Container */
 .case-card {
   background-color: white;
   border-radius: 8px;
@@ -251,10 +307,131 @@ body {
   padding-left: 10px;
 }
 
+/* Stage 1 Dual Column Layout */
+.stage-1-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.request-form-el {
+  flex: 3;
+}
+
+.poster-display-panel {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+/* Movie Poster Card Styles */
+.movie-poster-card {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E5E7EB;
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.movie-poster-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+}
+
+.movie-poster-card.empty .poster-art {
+  background: linear-gradient(135deg, #ECEFF1 0%, #CFD8DC 100%);
+  color: #90A4AE;
+}
+
+.movie-poster-card.empty {
+  opacity: 0.7;
+}
+
+.poster-art {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.poster-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.poster-info {
+  padding: 1.25rem;
+  background-color: white;
+}
+
+.poster-info h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pega-blue-primary);
+  margin-bottom: 6px;
+}
+
+.poster-info p {
+  font-size: 0.8rem;
+  color: var(--pega-text-light);
+  margin-bottom: 4px;
+}
+
+.poster-info p strong {
+  color: var(--pega-text-dark);
+}
+
+/* Individual Poster Colors */
+.movie-poster-card.poster-bethlehem .poster-art {
+  background: linear-gradient(135deg, #FAD961 0%, #F76B1C 100%);
+  font-size: 2.2rem;
+}
+.movie-poster-card.poster-khalifa .poster-art {
+  background: linear-gradient(135deg, #2C3E50 0%, #000000 100%);
+  font-size: 2.4rem;
+}
+.movie-poster-card.poster-thudakkam .poster-art {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  font-size: 2.3rem;
+}
+.movie-poster-card.poster-toxic .poster-art {
+  background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+  font-size: 2.5rem;
+}
+.movie-poster-card.poster-bhogi .poster-art {
+  background: linear-gradient(135deg, #F00000 0%, #DC281E 100%);
+  font-size: 2.5rem;
+}
+.movie-poster-card.poster-theri .poster-art {
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  font-size: 2.4rem;
+}
+.movie-poster-card.poster-nere .poster-art {
+  background: linear-gradient(135deg, #1f4037 0%, #99f2c8 100%);
+  font-size: 2.3rem;
+}
+.movie-poster-card.poster-kathanar .poster-art {
+  background: linear-gradient(135deg, #0f0c1b 0%, #302b63 100%, #24243e 100%);
+  font-size: 2rem;
+}
+
 /* Form Styles */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
@@ -334,7 +511,7 @@ body {
   background-color: #F3F4F6;
 }
 
-/* Seating grid area */
+/* Seating Grid Area */
 .seating-area {
   display: flex;
   flex-direction: column;
@@ -385,7 +562,7 @@ body {
 }
 
 .seat.premium-row {
-  border-color: #B59410; /* Gold border for premium */
+  border-color: #B59410;
   color: #B59410;
 }
 
@@ -441,7 +618,7 @@ body {
   background-color: #E5E7EB;
 }
 
-/* Invoice Styles */
+/* Invoice Card */
 .invoice-card {
   background-color: white;
   border: 1px solid var(--pega-border-color);
@@ -507,7 +684,7 @@ body {
   color: var(--pega-green-success) !important;
 }
 
-/* Success layout */
+/* Success Screen */
 .success-screen {
   text-align: center;
   padding: 2rem 0;
@@ -633,7 +810,7 @@ body {
   margin-right: 8px;
 }
 
-/* Footer styling */
+/* Footer */
 .pega-footer {
   background-color: white;
   border-top: 1px solid #E5E7EB;
@@ -641,6 +818,21 @@ body {
   text-align: center;
   font-size: 0.8rem;
   color: var(--pega-text-light);
+  z-index: 10;
+}
+
+@media (max-width: 800px) {
+  .stage-1-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .request-form-el {
+    width: 100%;
+  }
+  .poster-display-panel {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -651,5 +843,14 @@ body {
     flex-direction: column;
     gap: 10px;
     text-align: center;
+  }
+  .bg-posters-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 40px;
+  }
+  .bg-poster {
+    height: 250px;
+    font-size: 1.25rem;
   }
 }

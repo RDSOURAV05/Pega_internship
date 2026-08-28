@@ -2,6 +2,74 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   
+  // Movie database (Malayalam Releasing Directory)
+  const moviesDb = {
+    "Bethlehem Kudumba Unit": {
+      title: "Bethlehem Kudumba Unit",
+      genre: "Family / Romantic Comedy",
+      cast: "Nivin Pauly, Mamitha Baiju",
+      release: "21 August 2026",
+      className: "poster-bethlehem",
+      initials: "BKU"
+    },
+    "Khalifa – The Ruler": {
+      title: "Khalifa – The Ruler",
+      genre: "Action / Crime",
+      cast: "Prithviraj Sukumaran",
+      release: "August 2026",
+      className: "poster-khalifa",
+      initials: "KLR"
+    },
+    "Thudakkam": {
+      title: "Thudakkam",
+      genre: "Thriller / Drama",
+      cast: "New Cast & Crew",
+      release: "August 2026",
+      className: "poster-thudakkam",
+      initials: "TDK"
+    },
+    "Toxic: A Fairy Tale for Grown-ups": {
+      title: "Toxic: A Fairy Tale",
+      genre: "Action / Drama",
+      cast: "Yash, Kiara Advani, Nayanthara",
+      release: "26 August 2026",
+      className: "poster-toxic",
+      initials: "TXC"
+    },
+    "Bhogi": {
+      title: "Bhogi",
+      genre: "Action / Drama",
+      cast: "Sharwanand, Anupama Parameswaran",
+      release: "28 August 2026",
+      className: "poster-bhogi",
+      initials: "BGI"
+    },
+    "Theri Meri": {
+      title: "Theri Meri",
+      genre: "Comedy / Thriller",
+      cast: "Sreenath Bhasi, Shine Tom Chacko",
+      release: "28 August 2026",
+      className: "poster-theri",
+      initials: "TMR"
+    },
+    "Nere Chovva": {
+      title: "Nere Chovva",
+      genre: "Sci-Fi / Thriller",
+      cast: "Kunchacko Boban, Manju Warrier",
+      release: "28 August 2026",
+      className: "poster-nere",
+      initials: "NCV"
+    },
+    "Kathanar – The Wild Sorcerer": {
+      title: "Kathanar: Wild Sorcerer",
+      genre: "Fantasy / Horror / Thriller",
+      cast: "Jayasurya, Anushka Shetty",
+      release: "28 August 2026",
+      className: "poster-kathanar",
+      initials: "KTH"
+    }
+  };
+
   // State variables
   let bookingState = {
     customerName: "",
@@ -45,6 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const requestForm = document.getElementById("request-form");
+  const movieSelect = document.getElementById("movie-select");
+  const moviePosterCard = document.getElementById("movie-poster-card");
+  const posterArt = document.getElementById("poster-art");
+  const posterTitle = document.getElementById("poster-title");
+  const posterGenre = document.getElementById("poster-genre");
+  const posterCast = document.getElementById("poster-cast");
+  const posterRelease = document.getElementById("poster-release");
+
   const seatingGrid = document.getElementById("seating-grid");
   const selectedQtyLabel = document.getElementById("selected-qty-label");
   const nextTo3Btn = document.getElementById("go-to-3");
@@ -84,6 +160,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   bookingState.caseId = generateCaseId();
   document.getElementById("case-ref").innerText = bookingState.caseId;
+
+  // Dynamic Poster Updater Rule
+  movieSelect.addEventListener("change", () => {
+    const selectedVal = movieSelect.value;
+    const movie = moviesDb[selectedVal];
+
+    if (movie) {
+      moviePosterCard.className = `movie-poster-card ${movie.className}`;
+      posterArt.innerText = movie.initials;
+      posterTitle.innerText = movie.title;
+      posterGenre.innerHTML = `<strong>Genre:</strong> ${movie.genre}`;
+      posterCast.innerHTML = `<strong>Cast:</strong> ${movie.cast}`;
+      posterRelease.innerHTML = `<strong>Release:</strong> ${movie.release}`;
+    } else {
+      moviePosterCard.className = "movie-poster-card empty";
+      posterArt.innerHTML = '<span class="poster-icon">🎬</span>';
+      posterTitle.innerText = "Select a Movie";
+      posterGenre.innerText = "-";
+      posterCast.innerText = "-";
+      posterRelease.innerText = "-";
+    }
+  });
 
   // Active Stage Switcher
   function transitionToStage(stageNum) {
@@ -278,6 +376,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear form inputs
     requestForm.reset();
     
+    // Reset dynamic poster card
+    moviePosterCard.className = "movie-poster-card empty";
+    posterArt.innerHTML = '<span class="poster-icon">🎬</span>';
+    posterTitle.innerText = "Select a Movie";
+    posterGenre.innerText = "-";
+    posterCast.innerText = "-";
+    posterRelease.innerText = "-";
+
     // Clear seat selection array
     bookingState.selectedSeats = [];
     

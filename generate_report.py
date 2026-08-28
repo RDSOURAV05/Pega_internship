@@ -53,9 +53,9 @@ def generate_report():
     title_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     title_p.paragraph_format.space_before = Pt(120)
     title_p.paragraph_format.space_after = Pt(12)
-    title_run = title_p.add_run("Movie Ticket Booking\nManagement Application")
+    title_run = title_p.add_run("Kerala Movie Ticket Booking\nManagement Application")
     title_run.font.name = 'Arial'
-    title_run.font.size = Pt(28)
+    title_run.font.size = Pt(26)
     title_run.font.bold = True
     title_run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79) # Navy Blue
     
@@ -89,11 +89,11 @@ def generate_report():
     
     doc.add_paragraph(
         "This project documentation report presents the architectural design, implementation strategy, "
-        "and user story validation details for the Movie Ticket Booking Management Application. "
-        "Built on Pega Infinity, the application delivers a modern, automated system for reserving movie "
-        "tickets, validating seating configurations, calculating dynamic booking rates, and sending real-time receipts. "
-        "The system dramatically minimizes manual effort and operational inefficiencies while providing a seamless, "
-        "low-latency interface for customers."
+        "and user story validation details for the Kerala Movie Ticket Booking Management Application. "
+        "Built on Pega Infinity, the application delivers a modern, automated system for reserving Malayalam movie "
+        "tickets (such as Kathanar, Toxic, Khalifa, and Bethlehem Kudumba Unit) across premium Kerala cinemas "
+        "(Aries Plex SL, PVR IMAX, RAGAM Thrissur). "
+        "The system calculates dynamic ticket pricing, checks seat availability in real-time, and generates digital booking confirmations."
     )
     
     # Section 2: Case Lifecycle & Architecture
@@ -155,7 +155,8 @@ def generate_report():
     doc.add_paragraph(
         "Objective: To allow users to submit show selection details. The interface captures inputs "
         "including Movie Name, Theater Location, Date, Showtime, Ticket Category, and Quantity. "
-        "Form validation prevents negative ticket entries and past show dates."
+        "Form validation prevents negative ticket entries and past show dates. Movies are loaded from the "
+        "active Kerala releases catalog (e.g. Bethlehem Kudumba Unit, Toxic, Kathanar)."
     )
     
     # US-002
@@ -170,8 +171,8 @@ def generate_report():
     doc.add_heading("US-003: Calculate Booking Cost", level=2)
     doc.add_paragraph(
         "Objective: To apply pricing logic. The system uses a Declare Expression or Data Transform to multiply "
-        "the selected seats by the ticket category price (Standard vs Premium), adds service taxes (18%), "
-        "applies bulk discounts, and renders a detailed price breakdown before submission."
+        "the selected seats by the ticket category price (Standard = ₹150, Premium = ₹300), adds service taxes (18%), "
+        "applies a 10% bulk discount for bookings of 4 or more tickets, and renders a detailed price breakdown in Indian Rupees (INR) before case resolution."
     )
     
     # Section 4: Screenshot Verification Tables
@@ -215,7 +216,7 @@ def generate_report():
     add_screenshot_box("Resolved-Completed Case Status Screen", "Capture the final confirmation UI displaying a generated transaction reference ID and green checked status indicators.")
     
     # Save document
-    doc.save("C:\\Users\\PRO\\OneDrive\\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
+    doc.save("C:\\Users\\PRO\\OneDrive\Documents\\GitHub\\pega\\Pega_Movie_Ticket_Booking_Report.docx")
     print("Report generated successfully as Pega_Movie_Ticket_Booking_Report.docx!")
 
 if __name__ == "__main__":

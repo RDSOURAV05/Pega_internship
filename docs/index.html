@@ -3,17 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pega - Movie Ticket Booking Portal</title>
+  <title>Pega - Kerala Movie Ticket Booking Portal</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Background decorative watermarks (CSS Movie Posters Grid) -->
+  <div class="bg-posters-grid">
+    <div class="bg-poster p-bethlehem">Bethlehem Kudumba Unit</div>
+    <div class="bg-poster p-khalifa">Khalifa - The Ruler</div>
+    <div class="bg-poster p-toxic">Toxic: Fairy Tale</div>
+    <div class="bg-poster p-kathanar">Kathanar - Sorcerer</div>
+  </div>
 
   <!-- Pega Header -->
   <header class="pega-header">
     <div class="logo-area">
       <div class="pega-logo">P</div>
       <div class="pega-text">
-        <span class="app-title">Movie Ticket Booking</span>
+        <span class="app-title">Kerala Movie Ticket Booking</span>
         <span class="app-sub">Pega App Studio Portal</span>
       </div>
     </div>
@@ -60,50 +68,76 @@
             <h2>US-001: Submit Movie Ticket Request</h2>
             <p class="desc">Specify your movie preferences, theater location, and ticket requirements to initiate the booking process.</p>
             
-            <form id="request-form">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="cust-name">Customer Name</label>
-                  <input type="text" id="cust-name" placeholder="Enter customer name" required>
+            <div class="stage-1-layout">
+              <!-- Booking Form -->
+              <form id="request-form" class="request-form-el">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="cust-name">Customer Name</label>
+                    <input type="text" id="cust-name" placeholder="Enter customer name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="cust-email">Customer Email</label>
+                    <input type="email" id="cust-email" placeholder="customer@domain.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="movie-select">Select Movie (Kerala Releases)</label>
+                    <select id="movie-select" required>
+                      <option value="" disabled selected>Select a movie...</option>
+                      <option value="Bethlehem Kudumba Unit">Bethlehem Kudumba Unit (Nivin Pauly)</option>
+                      <option value="Khalifa – The Ruler">Khalifa – The Ruler (Prithviraj)</option>
+                      <option value="Thudakkam">Thudakkam (Thriller)</option>
+                      <option value="Toxic: A Fairy Tale for Grown-ups">Toxic (Yash, Nayanthara)</option>
+                      <option value="Bhogi">Bhogi (Sharwanand)</option>
+                      <option value="Theri Meri">Theri Meri (Sreenath Bhasi)</option>
+                      <option value="Nere Chovva">Nere Chovva (Kunchacko Boban)</option>
+                      <option value="Kathanar – The Wild Sorcerer">Kathanar – The Wild Sorcerer</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="theater-select">Select Theater (Kerala Directory)</label>
+                    <select id="theater-select" required>
+                      <option value="" disabled selected>Select a theater...</option>
+                      <option value="Aries Plex SL Cinemas, Trivandrum">Aries Plex SL Cinemas (Trivandrum)</option>
+                      <option value="PVR IMAX, Trivandrum">PVR IMAX (Trivandrum)</option>
+                      <option value="PVR Forum Mall, Kochi">PVR Forum Mall (Kochi)</option>
+                      <option value="Vanitha Cineplex, Kochi">Vanitha Cineplex (Kochi)</option>
+                      <option value="RAGAM Theatre, Thrissur">RAGAM Theatre (Thrissur)</option>
+                      <option value="Palaxi Cinemas, Kozhikode">Palaxi Cinemas (Kozhikode)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ticket-type">Ticket Category</label>
+                    <select id="ticket-type" required>
+                      <option value="Standard">Standard - Row A-D (₹150/ticket)</option>
+                      <option value="Premium">Premium - Row E-F (₹300/ticket)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ticket-qty">Quantity (Tickets)</label>
+                    <input type="number" id="ticket-qty" min="1" max="10" placeholder="1-10" required>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="cust-email">Customer Email</label>
-                  <input type="email" id="cust-email" placeholder="customer@domain.com" required>
+                <div class="btn-group">
+                  <button type="submit" class="pega-btn-primary">Next: Choose Seats</button>
                 </div>
-                <div class="form-group">
-                  <label for="movie-select">Select Movie</label>
-                  <select id="movie-select" required>
-                    <option value="" disabled selected>Select a movie...</option>
-                    <option value="Engineer The Future">Engineer The Future of Agentic Enterprise</option>
-                    <option value="Low-Code Platform & Roles">Low-Code Platform & Roles</option>
-                    <option value="Introduction to Pega Infinity">Introduction to Pega Infinity</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="theater-select">Select Theater</label>
-                  <select id="theater-select" required>
-                    <option value="" disabled selected>Select a theater...</option>
-                    <option value="Pega Arena Cinema">Pega Arena Cinema (Valiamala)</option>
-                    <option value="Smartbridge Multiplex">Smartbridge Multiplex (Bangalore)</option>
-                    <option value="Constellation Digital Center">Constellation Digital Center (Virtual)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="ticket-type">Ticket Category</label>
-                  <select id="ticket-type" required>
-                    <option value="Standard">Standard - Row A-D ($150/ticket)</option>
-                    <option value="Premium">Premium - Row E-F ($300/ticket)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="ticket-qty">Quantity (Tickets)</label>
-                  <input type="number" id="ticket-qty" min="1" max="10" placeholder="1-10" required>
+              </form>
+
+              <!-- Dynamic Movie Poster Panel -->
+              <div class="poster-display-panel">
+                <div class="movie-poster-card empty" id="movie-poster-card">
+                  <div class="poster-art" id="poster-art">
+                    <span class="poster-icon">🎬</span>
+                  </div>
+                  <div class="poster-info">
+                    <h4 id="poster-title">Select a Movie</h4>
+                    <p id="poster-genre">-</p>
+                    <p id="poster-cast">-</p>
+                    <p id="poster-release">-</p>
+                  </div>
                 </div>
               </div>
-              <div class="btn-group">
-                <button type="submit" class="pega-btn-primary">Next: Choose Seats</button>
-              </div>
-            </form>
+            </div>
           </section>
 
           <!-- STAGE 2: SEAT SELECTION (US-002) -->
@@ -156,20 +190,20 @@
                   <td colspan="2"></td>
                 </tr>
                 <tr>
-                  <td>Base Ticket Price (<span id="invoice-qty">0</span> x $<span id="invoice-base-rate">150</span>)</td>
-                  <td class="val">$<span id="invoice-base-total">0.00</span></td>
+                  <td>Base Ticket Price (<span id="invoice-qty">0</span> x ₹<span id="invoice-base-rate">150</span>)</td>
+                  <td class="val">₹<span id="invoice-base-total">0.00</span></td>
                 </tr>
                 <tr>
                   <td>Taxes & Fees (18% Service Tax/GST)</td>
-                  <td class="val">$<span id="invoice-tax">0.00</span></td>
+                  <td class="val">₹<span id="invoice-tax">0.00</span></td>
                 </tr>
                 <tr class="discount-row" id="discount-row" style="display: none;">
                   <td>Bulk Discount (10% off for 4+ tickets)</td>
-                  <td class="val discount-val">-$<span id="invoice-discount">0.00</span></td>
+                  <td class="val discount-val">-₹<span id="invoice-discount">0.00</span></td>
                 </tr>
                 <tr class="total-row">
                   <td>Total Net Payable</td>
-                  <td class="val">$<span id="invoice-net-total">0.00</span></td>
+                  <td class="val">₹<span id="invoice-net-total">0.00</span></td>
                 </tr>
               </table>
             </div>
@@ -192,7 +226,7 @@
                 <p><strong>Movie:</strong> <span id="conf-movie">Movie Title</span></p>
                 <p><strong>Theater:</strong> <span id="conf-theater">Theater Name</span></p>
                 <p><strong>Seats Booked:</strong> <span id="conf-seats">A1, A2</span></p>
-                <p><strong>Amount Paid:</strong> $<span id="conf-amount">0.00</span></p>
+                <p><strong>Amount Paid:</strong> ₹<span id="conf-amount">0.00</span></p>
               </div>
               
               <div class="timeline-area">

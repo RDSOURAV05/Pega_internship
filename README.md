@@ -1,14 +1,16 @@
-# Movie Ticket Booking Management Application
+# Kerala Movie Ticket Booking Management Application
 ### 🎥 Pega National Internship Program - Capstone Project
+
 ### 🚀 **[Live Demo on GitHub Pages](https://rdsourav05.github.io/Pega_internship/)**
 
+Welcome to the **Kerala Movie Ticket Booking Management Application** repository. This project is built as part of **Pega's National Internship Program** to demonstrate core capabilities in Low-Code Application Development, Case Lifecycle Management, Data Modeling, and User Portal design using Pega Infinity.
 
-Welcome to the **Movie Ticket Booking Management Application** repository. This project is built as part of **Pega's National Internship Program** to demonstrate core capabilities in Low-Code Application Development, Case Lifecycle Management, Data Modeling, and User Portal design using Pega Infinity.
+This specific release has been updated with respect to current **Malayalam/Kerala theatrical movies** and **Kerala cinema directories** (updated as of 28 August 2026).
 
 ---
 
 ## 📌 Project Overview
-The **Movie Ticket Booking Management Application** automates the process of reserving movie tickets, managing theater seating arrangements, calculating dynamic ticket pricing, and generating digital booking confirmations. It replaces manual processes with a streamlined digital experience for customers and system managers.
+The **Movie Ticket Booking Management Application** automates the process of reserving movie tickets, managing theater seating arrangements, calculating dynamic ticket pricing in Indian Rupees (₹), and generating digital booking confirmations. It replaces manual processes with a streamlined digital experience for customers and system managers.
 
 ---
 
@@ -37,23 +39,23 @@ graph LR
 
 ### 1. Request Stage (US-001)
 *   **Submit Movie Ticket Request:** The customer initiates the booking case by filling in booking preferences:
-    *   *Movie Selection:* Select from a list of currently running films.
+    *   *Movie Selection:* Select from a list of currently running films (e.g., *Kathanar - The Wild Sorcerer*, *Toxic*, *Khalifa*, *Bethlehem Kudumba Unit*).
     *   *Date & Showtime:* Select the preferred date and show slot.
-    *   *Theater & Location:* Choose the cinema hall.
+    *   *Theater & Location:* Choose the cinema hall from the Kerala district directory (e.g., *Aries Plex SL Cinemas Trivandrum*, *RAGAM Thrissur*, *PVR Forum Mall Kochi*).
     *   *Ticket Category:* Select between Standard or Premium seating.
     *   *Ticket Quantity:* Specify the number of seats needed.
 
 ### 2. Availability Stage (US-002)
 *   **Check Show Availability:** The system query checks real-time seat inventory.
-    *   *Seat Map Display:* A custom visual seating grid (Layout Group / Repeating Dynamic Layout) displays occupied vs. available seats.
+    *   *Seat Map Display:* A custom visual seating grid displays occupied vs. available seats.
     *   *Seat Selection:* The user selects their specific seat numbers matching their requested ticket quantity.
 
 ### 3. Calculation Stage (US-003)
 *   **Calculate Booking Cost:** Pega Data Transforms and Decision Tables run to compute pricing:
-    *   *Base Price Calculation:* E.g., Standard = $150 / ticket, Premium = $300 / ticket.
+    *   *Base Price Calculation:* E.g., Standard = ₹150 / ticket, Premium = ₹300 / ticket.
     *   *Taxes:* Applying 18% Service Tax/GST.
-    *   *Discounts:* Applying bulk discount rules (e.g., 10% off for 5+ tickets).
-    *   *Total Price:* Computes the final payable amount.
+    *   *Discounts:* Applying bulk discount rules (e.g., 10% off for 4+ tickets).
+    *   *Total Price:* Computes the final payable amount in Indian Rupees (₹).
 
 ### 4. Confirmation Stage
 *   **Generate Confirmation:** Resolves the case with status `Resolved-Completed`.
@@ -68,8 +70,8 @@ Below are the primary Pega Data Classes configured for this application:
 
 | Data Class | Properties | Description |
 | :--- | :--- | :--- |
-| `Pega-Data-Movie` | `MovieID`, `Title`, `Genre`, `Duration`, `Language`, `Rating` | Details of all active movies. |
-| `Pega-Data-Theater` | `TheaterID`, `Name`, `Location`, `TotalSeats`, `SeatingLayout` | Cinema hall configurations. |
+| `Pega-Data-Movie` | `MovieID`, `Title`, `Genre`, `Duration`, `Language`, `Rating` | Details of all active Malayalam movies. |
+| `Pega-Data-Theater` | `TheaterID`, `Name`, `Location`, `TotalSeats`, `SeatingLayout` | Cinema hall configurations in Kerala. |
 | `Pega-Data-ShowTime` | `ShowTimeID`, `MovieID`, `TheaterID`, `DateTime`, `AvailableSeats` | Specific show schedules. |
 | `Pega-Data-Booking` | `BookingID`, `CustomerName`, `Email`, `ShowTimeID`, `SeatNumbers`, `TotalPrice`, `Status` | Transactions and booking records. |
 
@@ -109,6 +111,7 @@ Below are the primary Pega Data Classes configured for this application:
 ---
 
 ## 🚀 How to Run the Web Prototype Locally
-For presentation and review, a fully working HTML/CSS/JS prototype simulating this Pega app is included in this repository:
-1.  Double-click `index.html` in your file explorer to open it in any browser.
-2.  Follow the step-by-step Pega flow wizard to book a ticket, interact with the seat map, and view the price breakdown.
+For presentation and review, a fully working HTML/CSS/JS prototype simulating this Pega app is included in the `docs` directory:
+1.  Navigate to the `docs` folder.
+2.  Double-click `index.html` in your file explorer to open it in any browser.
+3.  Follow the step-by-step Pega flow wizard to book a ticket, interact with the seat map, and view the price breakdown.
